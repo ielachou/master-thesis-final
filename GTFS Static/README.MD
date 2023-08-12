@@ -10,6 +10,8 @@ To import GTFS static data in MobilityDB, we use SQL statements for the conversi
 
 ## User guide
 
+If some steps do not work for format or missing shapes, see further sections.
+
 - Create the necessary tables to host the data by running <code>create_tables.sql</code>
 
 
