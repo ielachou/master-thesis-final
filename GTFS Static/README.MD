@@ -4,7 +4,7 @@
 To import GTFS static data in MobilityDB, we use SQL statements for the conversion, but we can use a Python script or another library to preprocess our data.
 
 ## Requirements
-- MobilityDB.
+- MobilityDB >= 1.0
 - (Optional) [<tt>pfaedle</tt>](https://www.genome.gov/) if <code>shapes.txt</code> is missing in the dataset.
 - (Optional) Python >= 3.0 if a preprocessing step is needed.
 
