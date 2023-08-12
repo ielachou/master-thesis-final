@@ -8,4 +8,4 @@ To import GTFS static data in MobilityDB, we only use SQL statements. This part 
 
 
 Here is a visualisation of all the public transport vehicles in Brussels on 21st July 2023 in the morning. The data are imported from GTFS Static feeds.
-![](./img/bruxelles mobilité.gif)
+![](./img/brussels_static.gif)
