@@ -65,6 +65,7 @@ UPDATE trip_stops t
 SET perc = ST_LineLocatePoint(shape_geom, point_geom)
 FROM shape_geoms g
 WHERE t.shape_id = g.shape_id;
+
 DELETE FROM trip_stops
 WHERE (trip_id, start_date, stop_sequence) IN (
         SELECT trip_id,

@@ -19,8 +19,8 @@ BEGIN
 		FROM calendar_dates WHERE exception_type = 2
 		UNION
 		SELECT c.service_id, date
-		FROM calendar c JOIN calendar_dates d ON c.service_id = d.service_id
-		WHERE exception_type = 1 AND start_date <= date AND date <= end_date
+		FROM calendar_dates
+		WHERE exception_type = 1
 	);
 END;
 $$ LANGUAGE 'plpgsql';
