@@ -51,7 +51,8 @@ BEGIN
 		PERFORM create_from_calendar();
 	END IF;
 	
-	DELETE FROM service_dates WHERE date <> '2023-07-21';
+	/* Uncomment if you need to reduce to a given date
+    DELETE FROM service_dates WHERE date <> '2023-07-21';
 	DELETE FROM service_dates WHERE
 	(service_id, date) IN (
 		SELECT service_id, date
@@ -65,7 +66,7 @@ BEGIN
 		GROUP BY service_id, date
 		HAVING COUNT(*) > 1
 	);
-	
+	*/
 	RAISE NOTICE 'updating trip_stops...';
 	DROP TABLE IF EXISTS trip_stops;
 	CREATE TABLE trip_stops
@@ -85,8 +86,9 @@ BEGIN
 		shape_id, stop_id, arrival_time) (
 	SELECT t.trip_id, stop_sequence,
 		MAX(stop_sequence) OVER (PARTITION BY t.trip_id),
-		route_id, service_id, t.shape_id, st.stop_id, arrival_time
+		route_id, t.service_id, t.shape_id, st.stop_id, arrival_time
 	FROM trips t JOIN stop_times st ON t.trip_id = st.trip_id
+    JOIN service_dates sd ON t.service_id = sd.service_id
 	);
 
 
