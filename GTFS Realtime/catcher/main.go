@@ -62,13 +62,12 @@ func main() {
 		// Create new GET request
 		//req, err := http.NewRequest("GET", "HTTP GET URL", nil)
 		
-		req, err := http.NewRequest("GET", "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/lirr%2Fgtfs-lirr", nil)
 		if err != nil {
 			fmt.Println("Error while creating the request:", err)
 			return
 		}
 		// Set API Key header if needed
-		req.Header.Set("x-api-key", "DEJiWsPouL2dPcnxHCfnY5g40NHMIfAa6DHuUxHN")
+		//req.Header.Set("API KEY HEADER", "API KEY")
 		
 		
 		// Send GET request
@@ -110,7 +109,7 @@ func main() {
 					panic(err)
 				}
 				if count > 0 {
-					// La ligne existe déjà, passer à l'entité suivante
+					// line already exists
 					continue
 				}
 		

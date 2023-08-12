@@ -94,7 +94,7 @@ func main() {
 	for i := 0; i < 40; i++ {
 		fmt.Printf("Query %v/40:\n", i+1)
 
-		resp, err := http.Get("https://api.entur.io/realtime/v1/rest/vm?requestorId=757c9284-0f12-4a46-a557-33a19e80119b")
+		resp, err := http.Get("HTTP API GET URL")
 		if err != nil {
 			fmt.Println("Error while receiving the request:", err)
 			return
@@ -118,7 +118,7 @@ func main() {
 		err = xml.Unmarshal(body, &siriData)
 		if err != nil {
 			fmt.Println("Error while parsing XML message:", err)
-			return
+			continue
 		}
 
 		// Insertion loop
@@ -153,7 +153,6 @@ func main() {
 			}
 
 			if count > 0 {
-				fmt.Println("La ligne existe déjà, passer à l'entité suivante.")
 				continue
 			}
 

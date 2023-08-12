@@ -45,7 +45,9 @@ go run main.go
 
 Once the database is full of realtime positions, we can transform them for MobilityDB.
 
-Run the script <code>simple_transform.sql</code> to build trajectories. If a corresponding NeTEx feed is available in the database, a more precise trajectory can be built. But depending on how the data is imported (raw NeTEx or NeTEx convert to GTFS), the modus operandi can be different. 
+Run the script <code>simple_transform.sql</code> to build trajectories based on the positions only.
+
+If a corresponding NeTEx feed is available in the database, a more precise trajectory can be built. But depending on how the data is imported (raw NeTEx or NeTEx convert to GTFS), the modus operandi can be different. 
 
 In the case the imported NeTEx is from a conversion into GTFS, the matching is done on the GTFS field <code>trip_id</code> with the SIRI field <code>DatedVehicleJourneyRef</code>.
 
