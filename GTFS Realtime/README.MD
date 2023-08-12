@@ -52,7 +52,7 @@ If the database is not populated by a corresponding GTFS Static feed, run <code>
 
 In red are the catched positions of a train in New York, in blue the trajectory extracted from the static feed. And in orange the constructed trajectory. The built trajectory is not map-matched.
 
-In the other case, if the GTFS Static feed is available in the database, run <code>simple_transform.sql</code>, it will use the static feed to create a precise trajectory. The yellow trajectory in the next image corresponds to the realtime feed matched to the static.
+In the other case, if the GTFS Static feed is available in the database, run <code>precise_transform.sql</code>, it will use the static feed to create a precise trajectory. The light yellow trajectory in the next image corresponds to the realtime feed matched to the static.
 
 ![Solved map matching](img/solved%20map%20match.png)
 
