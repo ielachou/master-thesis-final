@@ -27,6 +27,7 @@ Using a dynamic visualisation tool for MobilityDB like MOVE on QGIS allows to wa
 
 This query compute the arrival and departure times at each stop for a given trip. The potential delays can be therefore estimated.
 
+<<<<<<< HEAD
 ![](Use%20cases/img/arrival-departures.png)
 
 ### Average Speed of Vehicles by Day or Hour
@@ -34,3 +35,6 @@ This query compute the arrival and departure times at each stop for a given trip
 This queries compute the average speed of our vehicles. Here average speed of New York buses.
 
 ![](./Use%20cases/img/grafana%20avg%20speed%20buses.png)
+=======
+![](Use%20Cases/img/arrival-departures.png)
+>>>>>>> 6b220a4b11a78a0c13a7b4b73f040c0052a7bcc4
