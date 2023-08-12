@@ -1,4 +1,4 @@
-drop table trips_mdb cascade;
+DROP TABLE IF EXISTS trips_mdb cascade;
 CREATE TABLE trips_mdb (
 		line_ref text NOT NULL,
 		vehicle_ref text not null,

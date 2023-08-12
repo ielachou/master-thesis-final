@@ -58,7 +58,7 @@ In the other case, if the GTFS Static feed is available in the database, run <co
 
 Do not forget to replace the time zone in the scripts with the one you are observing.
 
-The following visualisation shows the journey of a realtime catched train, and its theoretical trip extracted from the GTFS Static feed.
+The following visualisation shows the journey of a realtime catched train, and its theoretical trip extracted from the GTFS Static feed. In blue the theoretical train, and in red the train catched in realtime.
 
 ![](img/new%20york%20lirr%20run.gif)
 
