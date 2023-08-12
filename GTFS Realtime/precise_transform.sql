@@ -5,7 +5,7 @@ SET no_seq = subquery.row_num
 FROM (
         SELECT tripID,
             startdate,
-            timestamp_posix,
+            timestamp,
             ROW_NUMBER() OVER (
                 PARTITION BY tripID,
                 startdate
@@ -15,7 +15,7 @@ FROM (
     ) AS subquery
 WHERE p.tripID = subquery.tripID
     AND p.startdate = subquery.startdate
-    AND p.timestamp_posix = subquery.timestamp_posix;
+    AND p.timestamp = subquery.timestamp;
 DROP TABLE IF EXISTS trip_stops;
 CREATE TABLE trip_stops (
     trip_id text,
@@ -255,7 +255,7 @@ SELECT trip_id,
 FROM trip_points t;
 CREATE INDEX idx_trips_input ON trips_input (trip_id, route_id, t);
 DROP TABLE IF EXISTS trips_mdb;
-CREATE TABLE trips_mdb (
+CREATE TABLE trips_mdbrt (
     trip_id text NOT NULL,
     route_id text NOT NULL,
     date date NOT NULL,
@@ -278,9 +278,9 @@ GROUP BY trip_id,
     date;
 ALTER TABLE trips_mdbrt
 ADD COLUMN traj geometry;
-UPDATE trips_mdb
+UPDATE trips_mdbrt
 SET Traj = trajectory(Trip);
 ALTER TABLE trips_mdbrt
 ADD COLUMN starttime timestamp;
-UPDATE trips_mdb
+UPDATE trips_mdbrt
 SET starttime = startTimestamp(trip);

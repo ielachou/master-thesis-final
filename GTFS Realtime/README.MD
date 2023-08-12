@@ -46,10 +46,28 @@ go run main.go
 
 Once the database is full of realtime positions, we can transform them for MobilityDB.
 
-If the database is also populated by a corresponding GTFS Static feed, run <code>precise_transform.sql</code>. This script will use the GTFS Static feed to create a precise trajectory.
+If the database is not populated by a corresponding GTFS Static feed, run <code>simple_transform.sql</code>. it will just connect all the positions ordered by the timestamp. This will lead to convenient but not precise results as described by the following picture. 
 
-In the other case, just run <code>simple_transform.sql</code>, it will just connect all the positions ordered by the timestamp. This will lead to convenient but not precise results.
+![Map matching problem](img/map%20matching%20problem.png)
 
-Do not forget to replace the time zone with the one you are observing.
+In red are the catched positions of a train in New York, in blue the trajectory extracted from the static feed. And in orange the constructed trajectory. The built trajectory is not map-matched.
+
+In the other case, if the GTFS Static feed is available in the database, run <code>simple_transform.sql</code>, it will use the static feed to create a precise trajectory. The yellow trajectory in the next image corresponds to the realtime feed matched to the static.
+
+![Solved map matching](img/solved%20map%20match.png)
+
+Do not forget to replace the time zone in the scripts with the one you are observing.
+
+The following visualisation shows the journey of a realtime catched train, and its theoretical trip extracted from the GTFS Static feed.
+
+![](img/new%20york%20lirr%20run.gif)
 
 
+## (Optional) Protobuf file
+
+The current GTFS Realtime Protobuf specification schema is provided, as well as its compiled version for our Go server.
+
+The compiled version can be obtained by running the proto compiler.
+```
+protoc -I=$SRC_DIR --go_out=$DST_DIR $SRC_DIR/gtfs.proto
+```

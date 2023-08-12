@@ -44,11 +44,11 @@ CREATE OR REPLACE FUNCTION transform_gtfs_mdb() RETURNS text AS $$
 DECLARE
 	calendar_cnt integer;
 BEGIN
-	SELECT COUNT(*) FROM calendar_dates INTO calendar_cnt;
+	SELECT COUNT(*) FROM calendar INTO calendar_cnt;
 	IF calendar_cnt > 0 THEN
-		PERFORM create_from_calendar_dates();
-	ELSE
 		PERFORM create_from_calendar();
+	ELSE
+		PERFORM create_from_calendar_dates();
 	END IF;
 	
 	/* Uncomment if you need to reduce to a given date
