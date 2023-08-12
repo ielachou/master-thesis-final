@@ -1,4 +1,4 @@
-This repository will store all the necessary code to import/export for mobility data exchange standards with MobilityDB.
+This repository will store all the necessary code to import, export and use mobility data exchange standards with MobilityDB.
 
 This work is the result of the research for my master thesis that can be found [here](Master_thesis_Iliass_Public_Transports.pdf).
 
@@ -16,7 +16,7 @@ This repository first explains how to import these types of data into MobilityDB
 
 ## Use Cases
 
-The following are some examples of the Use Cases we have developed.
+The following are some examples of the Use Cases we have developed. More informations and details are provided in the master's thesis and in the [use cases' directory](Use%20Cases/).
 
 ### Dynamic Visualisation of Delays by Line
 Using a dynamic visualisation tool for MobilityDB like MOVE on QGIS allows to watch the different public transports runs. The following visualisation shows the journey of a realtime catched train, and its theoretical trip extracted from the GTFS Static feed. In blue the theoretical train, and in red the train catched in realtime.
