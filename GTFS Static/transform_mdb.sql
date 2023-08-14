@@ -67,9 +67,9 @@ BEGIN
 		HAVING COUNT(*) > 1
 	);
 	*/
-	RAISE NOTICE 'updating trip_stops...';
-	DROP TABLE IF EXISTS trip_stops;
-	CREATE TABLE trip_stops
+	RAISE NOTICE 'updating trip_positions...';
+	DROP TABLE IF EXISTS trip_positions;
+	CREATE TABLE trip_positions
 	(
 	  trip_id text,
 	  stop_sequence integer,
@@ -82,7 +82,7 @@ BEGIN
 	  perc float
 	);
 
-	INSERT INTO trip_stops (trip_id, stop_sequence, no_stops, route_id, service_id,
+	INSERT INTO trip_positions (trip_id, stop_sequence, no_stops, route_id, service_id,
 		shape_id, stop_id, arrival_time) (
 	SELECT t.trip_id, stop_sequence,
 		MAX(stop_sequence) OVER (PARTITION BY t.trip_id),
@@ -92,7 +92,7 @@ BEGIN
 	);
 
 
-	UPDATE trip_stops t
+	UPDATE trip_positions t
 	SET perc = CASE
 		WHEN stop_sequence =  1 then 0::float
 		WHEN stop_sequence =  no_stops then 1.0::float
@@ -103,7 +103,7 @@ BEGIN
 	AND t.stop_id = s.stop_id;
 
 
-	RAISE NOTICE 'trip_stops OK';
+	RAISE NOTICE 'trip_positions OK';
 	RAISE NOTICE 'updating trip_segs...';
 	DROP TABLE IF EXISTS trip_segs;
 	CREATE TABLE trip_segs (
@@ -132,7 +132,7 @@ BEGIN
 			MAX(stop_sequence) OVER (PARTITION BY trip_id),
 			t.shape_id, t.arrival_time, LEAD(arrival_time) OVER w,
 			t.perc, LEAD(perc) OVER w
-		FROM trip_stops t WINDOW w AS (PARTITION BY trip_id ORDER BY stop_sequence)
+		FROM trip_positions t WINDOW w AS (PARTITION BY trip_id ORDER BY stop_sequence)
 	)
 	SELECT * FROM temp WHERE stop_sequence2 IS NOT null;
 

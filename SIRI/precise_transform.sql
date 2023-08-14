@@ -18,8 +18,8 @@ WHERE p.dated_vehicle_journey_ref = subquery.dated_vehicle_journey_ref
     AND p.recorded_at_time = subquery.recorded_at_time;
 
 
-DROP TABLE IF EXISTS trip_stops;
-CREATE TABLE trip_stops (
+DROP TABLE IF EXISTS trip_positions;
+CREATE TABLE trip_positions (
     trip_id text,
     start_date date,
     stop_sequence integer,
@@ -32,7 +32,7 @@ CREATE TABLE trip_stops (
     perc float,
     point_geom geometry
 );
-INSERT INTO trip_stops (
+INSERT INTO trip_positions (
         trip_id,
         start_date,
         stop_sequence,
@@ -61,17 +61,17 @@ INSERT INTO trip_stops (
                 FROM trips
             ) as static_routes on static_routes.trip_id = t.dated_vehicle_journey_ref
     );
-UPDATE trip_stops t
+UPDATE trip_positions t
 SET perc = ST_LineLocatePoint(shape_geom, point_geom)
 FROM shape_geoms g
 WHERE t.shape_id = g.shape_id;
 
-DELETE FROM trip_stops
+DELETE FROM trip_positions
 WHERE (trip_id, start_date, stop_sequence) IN (
         SELECT trip_id,
             start_date,
             stop_sequence
-        FROM trip_stops
+        FROM trip_positions
         GROUP BY trip_id,
             start_date,
             stop_sequence
@@ -79,7 +79,7 @@ WHERE (trip_id, start_date, stop_sequence) IN (
     )
     AND ctid NOT IN (
         SELECT MIN(ctid)
-        FROM trip_stops
+        FROM trip_positions
         GROUP BY trip_id,
             start_date,
             stop_sequence
@@ -132,7 +132,7 @@ INSERT INTO trip_segs (
             LEAD(arrival_time) OVER w,
             t.perc,
             LEAD(perc) OVER w
-        FROM trip_stops t WINDOW w AS (
+        FROM trip_positions t WINDOW w AS (
                 PARTITION BY trip_id
                 ORDER BY stop_sequence
             )
