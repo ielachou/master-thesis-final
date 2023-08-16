@@ -18,7 +18,7 @@ BEGIN
 		SELECT service_id, date
 		FROM calendar_dates WHERE exception_type = 2
 		UNION
-		SELECT c.service_id, date
+		SELECT service_id, date
 		FROM calendar_dates
 		WHERE exception_type = 1
 	);
