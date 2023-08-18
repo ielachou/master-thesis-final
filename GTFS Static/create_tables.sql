@@ -302,8 +302,7 @@ min_transfer_time int,
 -- Unofficial fields
 from_route_id text default null,
 to_route_id text default null,
-service_id text default null,
-CONSTRAINT transfers_pkey PRIMARY KEY (from_stop_id, to_stop_id)
+service_id text default null
 );
 
 DROP TABLE IF EXISTS pathway_modes CASCADE;
