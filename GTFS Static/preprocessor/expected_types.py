@@ -39,5 +39,11 @@ expected_types = {
         'continuous_drop_off' : int,
         'shape_dist_traveled':int,
         'timepoint' : int
+    },
+    'transfers': {
+        'from_stop_id' : str,
+        'to_stop_id' : str,
+        'transfer_type' : int,
+        'min_transfer_time' : int
     }
 }
