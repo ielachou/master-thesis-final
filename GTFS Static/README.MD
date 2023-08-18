@@ -18,7 +18,7 @@ If some steps do not work for format or missing shapes, see further sections.
 
 * Import the data into PostgreSQL/PostGIS with <code>import_sql.sql</code>; Uncomment and replace the call to the function with the path to your extracted GTFS folder.
 * (Optional) If needed, run <code>preprocess_target.sql</code> to reduce the scope of the studied area, be sure to change the coordinates with the correct area.
-* Finally, we transform the data into MobilityDB by running <code>transform_mdb.sql</code>. A commented block is available to reduce the feed to a given time range.
+* Finally, we transform the data into MobilityDB by running <code>transform_mdb.sql</code>. This operation can take time, depending on your dataset size. A commented block is available to reduce the feed to a given time range. 
 
 
 Here is a visualisation of all the public transport vehicles in Brussels on 21st July 2023 in the morning. The data are imported from GTFS Static feeds and visualised with MOVE on QGIS.
