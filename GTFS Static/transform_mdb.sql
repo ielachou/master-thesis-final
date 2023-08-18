@@ -120,8 +120,7 @@ BEGIN
 		perc2 float,
 		seg_geom geometry,
 		seg_length float,
-		no_points integer,
-		PRIMARY KEY (trip_id, stop1_sequence)
+		no_points integer
 	);
 
 	INSERT INTO trip_segs (trip_id, route_id, service_id, stop1_sequence, stop2_sequence,
